@@ -1,10 +1,25 @@
-import React, { useState } from 'react';
+import axios from 'axios';
+import React, { useState, useEffect, useRef } from 'react';
+import { getApiUrl } from '../../helpers';
 
 const ListItem = ({ item }) => {
-  const [active, setActive] = useState(true);
-  const [opacity, setOpacity] = useState(
-    item.properties['Picked Up'].checkbox ? '0.4' : '1'
-  );
+  const [active, setActive] = useState(item.properties['Picked Up'].checkbox);
+  const [opacity, setOpacity] = useState(active ? '0.4' : '1');
+  const [pageId, setPageId] = useState(item.id);
+  const initRender = useRef(true);
+
+  useEffect(() => {
+    const updatePickedUp = async () => {
+      if (initRender.current) {
+        //Don't run if button hasn't been clicked.
+        return;
+      }
+      const body = { page_id: pageId, checked: active };
+      const response = await axios.patch(`${getApiUrl()}/meals/update`, body);
+      console.log(response);
+    };
+    updatePickedUp();
+  }, [active]);
 
   const defaultStyles = {
     background: 'rgb(168, 212, 168)',
@@ -17,9 +32,12 @@ const ListItem = ({ item }) => {
   };
 
   const handleClick = () => {
+    initRender.current = false;
     setActive(!active);
     setOpacity((prevState) => (prevState === '1' ? '0.4' : '1'));
   };
+
+  console.log(item.properties['Add to Shopping List'].rollup.array[0]);
 
   return (
     <article style={defaultStyles} onClick={handleClick}>
