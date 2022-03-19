@@ -10,7 +10,7 @@ const List = () => {
   useEffect(() => {
     const getData = async () => {
       const data = await axios.get(`${apiUrl}/meals/all`);
-      console.log(data.data.data.results);
+      // console.log(data.data.data.results);
       setData(data.data.data.results);
     };
     getData();
@@ -19,7 +19,16 @@ const List = () => {
   return (
     <>
       <h1>List</h1>
-      {data ? data.map((i) => <ListItem key={i.id} item={i} />) : null}
+      {data
+        ? data.map((i) => {
+            if (
+              i.properties.QTY.rollup.number > 0 ||
+              i.properties['Manually Add'].checkbox
+            ) {
+              return <ListItem key={i.id} item={i} />;
+            }
+          })
+        : null}
     </>
   );
 };
