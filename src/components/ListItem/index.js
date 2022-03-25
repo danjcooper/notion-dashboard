@@ -22,12 +22,14 @@ const ListItem = ({ item }) => {
   }, [active]);
 
   const defaultStyles = {
-    background: 'rgb(168, 212, 168)',
+    background: '#FF7191',
+    color: 'white',
     width: '80%',
     margin: '5px',
-    padding: '3px',
-    borderRadius: '5px',
+    padding: '3px 20px',
+    borderRadius: '15px',
     display: 'inline-block',
+    textAlign: 'left',
     opacity: opacity,
   };
 
@@ -40,9 +42,11 @@ const ListItem = ({ item }) => {
   console.log(item.properties['Add to Shopping List'].rollup.array[0]);
 
   return (
-    <article style={defaultStyles} onClick={handleClick}>
+    <article className='listItem' style={defaultStyles} onClick={handleClick}>
       <h2>{item.properties.Name.title[0].plain_text}</h2>
-      <p>{item.properties.Department.multi_select[0].name}</p>
+      <section className='department'>
+        <p>{item.properties.Department.multi_select[0].name}</p>
+      </section>
       {item.properties.Notes.rich_text.length > 0 ? (
         <p>{item.properties.Notes.rich_text[0].plain_text}</p>
       ) : null}
