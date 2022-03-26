@@ -9,9 +9,9 @@ const List = () => {
 
   useEffect(() => {
     const getData = async () => {
-      const data = await axios.get(`${apiUrl}/meals/all`);
-      // console.log(data.data.data.results);
-      setData(data.data.data.results);
+      const data = await axios.get(`${apiUrl}/ingredients/all`);
+      console.log(data.data.data);
+      setData(data.data.data);
     };
     getData();
   }, [apiUrl]);
@@ -21,10 +21,7 @@ const List = () => {
       <h1>List</h1>
       {data
         ? data.map((i) => {
-            if (
-              i.properties.QTY.rollup.number > 0 ||
-              i.properties['Manually Add'].checkbox
-            ) {
+            if (i.inShoppingList || i.manuallyAdded) {
               return <ListItem key={i.id} item={i} />;
             }
           })

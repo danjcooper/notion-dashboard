@@ -37,6 +37,17 @@
   }
 }
 
+.listItem {
+  background-color: #ff7191;
+  color: white;
+  width: 80%;
+  margin: 5px;
+  padding: 15px 20px;
+  border-radius: 15px;
+  display: inline-block;
+  text-align: left;
+}
+
 .listItem h2,
 p {
   margin: 5px 0;

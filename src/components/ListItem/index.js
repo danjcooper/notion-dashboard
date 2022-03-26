@@ -3,7 +3,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { getApiUrl } from '../../helpers';
 
 const ListItem = ({ item }) => {
-  const [active, setActive] = useState(item.properties['Picked Up'].checkbox);
+  const [active, setActive] = useState(item.inShoppingBasket);
   const [opacity, setOpacity] = useState(active ? '0.4' : '1');
   const [pageId, setPageId] = useState(item.id);
   const initRender = useRef(true);
@@ -15,41 +15,35 @@ const ListItem = ({ item }) => {
         return;
       }
       const body = { page_id: pageId, checked: active };
-      const response = await axios.patch(`${getApiUrl()}/meals/update`, body);
+      const response = await axios.patch(
+        `${getApiUrl()}/ingredients/update`,
+        body
+      );
       console.log(response);
     };
     updatePickedUp();
   }, [active]);
 
   const defaultStyles = {
-    background: '#FF7191',
-    color: 'white',
-    width: '80%',
-    margin: '5px',
-    padding: '3px 20px',
-    borderRadius: '15px',
-    display: 'inline-block',
-    textAlign: 'left',
     opacity: opacity,
   };
 
   const handleClick = () => {
     initRender.current = false;
+
     setActive(!active);
     setOpacity((prevState) => (prevState === '1' ? '0.4' : '1'));
   };
 
-  console.log(item.properties['Add to Shopping List'].rollup.array[0]);
-
   return (
     <article className='listItem' style={defaultStyles} onClick={handleClick}>
-      <h2>{item.properties.Name.title[0].plain_text}</h2>
+      <h2>{item.name}</h2>
+
       <section className='department'>
-        <p>{item.properties.Department.multi_select[0].name}</p>
+        <p>{item.department}</p>
       </section>
-      {item.properties.Notes.rich_text.length > 0 ? (
-        <p>{item.properties.Notes.rich_text[0].plain_text}</p>
-      ) : null}
+
+      {item.notes ? <p>{item.notes}</p> : null}
     </article>
   );
 };
