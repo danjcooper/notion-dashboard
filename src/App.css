@@ -74,3 +74,25 @@
 .meat {
   background-color: #6c56c2;
 }
+
+.dairy {
+  background-color: #56c2a2;
+}
+.dry-goods {
+  background-color: #ffa031;
+}
+.spices-and-seasonings {
+  background-color: #31b5ff;
+}
+.bakery {
+  background-color: #ff6060;
+}
+.sauces {
+  background-color: #bababa;
+}
+.tinned {
+  background-color: #149b3a;
+}
+.drinks {
+  background-color: #e392ff;
+}

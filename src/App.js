@@ -1,10 +1,14 @@
+import { Routes, Route, Link } from 'react-router-dom';
 import './App.css';
-import { List } from './pages';
+import { List, Buttons } from './pages';
 
 function App() {
   return (
     <div className='App'>
-      <List />
+      <Routes>
+        <Route path='/' element={<List />} />
+        <Route path='/buttons' element={<Buttons />} />
+      </Routes>
     </div>
   );
 }
