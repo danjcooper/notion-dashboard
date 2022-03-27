@@ -1,6 +1,6 @@
 import axios from 'axios';
 import React, { useState, useEffect, useRef } from 'react';
-import { getApiUrl } from '../../helpers';
+import { getApiUrl, getDepartmentClassName } from '../../helpers';
 
 const ListItem = ({ item }) => {
   const [active, setActive] = useState(item.inShoppingBasket);
@@ -13,6 +13,7 @@ const ListItem = ({ item }) => {
       if (initRender.current) return;
 
       const body = { page_id: pageId, checked: active };
+
       const response = await axios.patch(
         `${getApiUrl()}/ingredients/update`,
         body
@@ -34,14 +35,18 @@ const ListItem = ({ item }) => {
   };
 
   return (
-    <article className='listItem' style={defaultStyles} onClick={handleClick}>
-      <h2>{item.name}</h2>
-
-      <section className='department'>
-        <p>{item.department}</p>
+    <article
+      className={`listItem ${getDepartmentClassName(item.department)}`}
+      style={defaultStyles}
+      onClick={handleClick}
+    >
+      <section className='main-product-details'>
+        <h2>{item.name}</h2>
+        <h3>
+          <span className='light'>QTY: </span>
+          {item.quantity}
+        </h3>
       </section>
-
-      {item.notes ? <p>{item.notes}</p> : null}
     </article>
   );
 };

@@ -17,4 +17,13 @@ const hasItemsInShoppingList = (items) => {
   return result;
 };
 
-module.exports = { isDev, getApiUrl, hasItemsInShoppingList };
+const getDepartmentClassName = (departmentName) => {
+  return departmentName.replace(/\s/g, '-').toLowerCase();
+};
+
+module.exports = {
+  isDev,
+  getApiUrl,
+  hasItemsInShoppingList,
+  getDepartmentClassName,
+};

@@ -4,7 +4,7 @@ import { ListItem } from '../';
 const ListDepartment = ({ department }) => {
   return (
     <section>
-      <h2>{department.name}</h2>
+      <h2 className='department-title'>{department.name}</h2>
 
       {department.ingredients.map((ingredient) =>
         ingredient.inShoppingList || ingredient.manuallyAdded ? (
