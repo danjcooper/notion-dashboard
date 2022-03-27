@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React from 'react';
 import { Button } from '../../components';
+import { getApiUrl, hasItemsInShoppingList } from '../../helpers';
 
 const Buttons = () => {
   const removeAllFromShoppingBasket = (e) => {
@@ -18,7 +19,7 @@ const Buttons = () => {
 
     const removeAll = async (target, interval) => {
       const result = await axios.patch(
-        'http://localhost:4000/ingredients/removeAllFromBasket'
+        `${getApiUrl()}/ingredients/removeAllFromBasket}`
       );
 
       clearInterval(interval);
