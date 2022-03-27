@@ -10,10 +10,8 @@ const ListItem = ({ item }) => {
 
   useEffect(() => {
     const updatePickedUp = async () => {
-      if (initRender.current) {
-        //Don't run if button hasn't been clicked.
-        return;
-      }
+      if (initRender.current) return;
+
       const body = { page_id: pageId, checked: active };
       const response = await axios.patch(
         `${getApiUrl()}/ingredients/update`,

@@ -10,4 +10,11 @@ const getApiUrl = () => {
   return isDev() ? devApiUrl : prodApiUrl;
 };
 
-module.exports = { isDev, getApiUrl };
+const hasItemsInShoppingList = (items) => {
+  const result =
+    items.filter((item) => item.inShoppingList || item.manuallyAdded).length >
+    0;
+  return result;
+};
+
+module.exports = { isDev, getApiUrl, hasItemsInShoppingList };
