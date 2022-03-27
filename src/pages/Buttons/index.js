@@ -19,7 +19,7 @@ const Buttons = () => {
 
     const removeAll = async (target, interval) => {
       const result = await axios.patch(
-        `${getApiUrl()}/ingredients/removeAllFromBasket}`
+        `${getApiUrl()}/ingredients/removeAllFromBasket`
       );
 
       clearInterval(interval);
