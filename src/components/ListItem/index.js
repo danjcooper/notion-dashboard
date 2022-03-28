@@ -15,7 +15,7 @@ const ListItem = ({ item }) => {
       const body = { page_id: pageId, checked: active };
 
       const response = await axios.patch(
-        `${getApiUrl()}/ingredients/update`,
+        `${getApiUrl()}/mealprep/ingredients/update`,
         body
       );
       console.log(response);

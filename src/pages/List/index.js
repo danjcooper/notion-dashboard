@@ -9,7 +9,9 @@ const List = () => {
 
   useEffect(() => {
     const getData = async () => {
-      const data = await axios.get(`${apiUrl}/ingredients/all/byDepartment`);
+      const data = await axios.get(
+        `${apiUrl}/mealPrep/ingredients/all/byDepartment`
+      );
       console.log(data.data.data);
       setData(data.data.data);
     };
