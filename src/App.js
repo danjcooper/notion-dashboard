@@ -1,6 +1,6 @@
-import { Routes, Route, Link } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 import './App.css';
-import { List, Buttons } from './pages';
+import { List, Buttons, Meals } from './pages';
 
 function App() {
   return (
@@ -8,6 +8,7 @@ function App() {
       <Routes>
         <Route path='/' element={<List />} />
         <Route path='/buttons' element={<Buttons />} />
+        <Route path='/meals' element={<Meals />} />
       </Routes>
     </div>
   );
