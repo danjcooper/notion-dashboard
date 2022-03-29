@@ -14,6 +14,9 @@ const Nav = () => {
       <Link className={styles.navLink} to='/buttons'>
         Buttons
       </Link>
+      <Link className={styles.navLink} to='/misc'>
+        misc.
+      </Link>
     </nav>
   );
 };
