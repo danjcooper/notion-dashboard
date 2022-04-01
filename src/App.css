@@ -96,3 +96,25 @@
 .drinks {
   background-color: #e392ff;
 }
+
+.sample-div {
+  width: 100vw;
+  height: 100vh;
+
+  background-color: #f7f7f7d2;
+
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.sample-div img {
+  width: 75px;
+  height: 75px;
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}

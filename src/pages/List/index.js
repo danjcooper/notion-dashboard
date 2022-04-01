@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { getApiUrl, hasItemsInShoppingList } from '../../helpers';
-import { ListDepartment } from '../../components';
+import { ListDepartment, Loader } from '../../components';
 
 const List = () => {
   const [data, setData] = useState(null);
@@ -21,13 +21,15 @@ const List = () => {
   return (
     <>
       <h1>List</h1>
-      {data
-        ? data.map((department, index) =>
-            hasItemsInShoppingList(department.ingredients) ? (
-              <ListDepartment key={index} department={department} />
-            ) : null
-          )
-        : null}
+      {data ? (
+        data.map((department, index) =>
+          hasItemsInShoppingList(department.ingredients) ? (
+            <ListDepartment key={index} department={department} />
+          ) : null
+        )
+      ) : (
+        <Loader />
+      )}
     </>
   );
 };

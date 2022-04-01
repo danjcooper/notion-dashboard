@@ -1,6 +1,6 @@
 import axios from 'axios';
 import React, { useState, useEffect } from 'react';
-import { MealList } from '../../components';
+import { Loader, MealList } from '../../components';
 import { getApiUrl, hasItemsInShoppingList } from '../../helpers';
 
 const Meals = () => {
@@ -17,7 +17,7 @@ const Meals = () => {
   return (
     <>
       <h1>Meals</h1>
-      {mealData ? <MealList data={mealData} /> : null}
+      {mealData ? <MealList data={mealData} /> : <Loader />}
     </>
   );
 };
